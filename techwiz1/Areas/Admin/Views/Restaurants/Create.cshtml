@@ -1,0 +1,80 @@
+﻿@model TechWizProject.Areas.Admin.Models.Restaurant
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Restaurant</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="OwnerId" class="control-label"></label>
+                <input asp-for="OwnerId" class="form-control" />
+                <span asp-validation-for="OwnerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Addr" class="control-label"></label>
+                <input asp-for="Addr" class="form-control" id="addr" />
+                <span asp-validation-for="Addr" class="text-danger"></span>
+                <div id="map" style="height: 350px;width: 450px"></div>
+            </div>
+           
+            <input asp-for="Lat" class="form-control" id="lat" type="hidden" />
+
+            <input asp-for="Lng" class="form-control" id="lng" type="hidden" />
+            <div class="form-group">
+                <label asp-for="Cover" class="control-label"></label>
+
+                <img src="" style="width: 200px" class="rounded mx-auto d-block" id="Image" />
+                <div class="col-md-10 row">
+                    <input type="file" onchange="changeImage(this)" />
+                    <input id="urlImg" value="@Model.Cover" type="hidden" name="Cover" />
+                    <div id="loader" class="spinner-border text-primary" role="status" style="display: none">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+
+                @* <input asp-for="Cover" class="form-control"/> *@
+                @* <span asp-validation-for="Cover" class="text-danger"></span> *@
+            </div>
+            <div class="form-group">
+                <label asp-for="Logo" class="control-label"></label>
+                <input asp-for="Logo" class="form-control" />
+                <span asp-validation-for="Logo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedAt" class="control-label"></label>
+                <input asp-for="CreatedAt" class="form-control" />
+                <span asp-validation-for="CreatedAt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpdatedAt" class="control-label"></label>
+                <input asp-for="UpdatedAt" class="form-control" />
+                <span asp-validation-for="UpdatedAt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsHlnXE9o0dJz42kxZnTO4zG8ZvRfnPuU&callback=initMap&libraries=places"
+        async></script>
+d
+<script src="~/js/GoogleMap.js"></script>
+<script src="~/js/ChangeImage.js"></script>

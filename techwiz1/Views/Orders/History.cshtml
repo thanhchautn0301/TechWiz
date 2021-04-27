@@ -1,0 +1,136 @@
+﻿@model TechWizProject.Models.Order
+
+@{
+    ViewData["Title"] = "History";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+<style>
+
+    .product, .product--pink, .product--yellow, .product--green, .product--red, .product--orange, .product--blue {
+        box-shadow: 1px 5px 15px #ccc;
+        width: 15em;
+        height: auto;
+        border-radius: 3px;
+        padding: 2em;
+        margin: 1em;
+        overflow: hidden;
+        position: relative;
+        flex: auto;
+    }
+
+    .product--red {
+        background: linear-gradient( -45deg, #E84855 50%, rgba(255, 255, 255, 0.5) 50%);
+    }
+    .product_inner {
+        display: flex;
+        align-items: center;
+        flex-flow: column wrap;
+    }
+
+    .product img, .product--blue img, .product--orange img, .product--red img, .product--green img, .product--yellow img, .product--pink img {
+        max-width: 100%;
+        height: auto !important;
+        text-align: center;
+    }
+    .product_inner p {
+        color: rgba(255, 255, 255, 0.9);
+    }
+    .product_inner button {
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        color: #FFF;
+        border-radius: 3px;
+        padding: 1em 3em;
+        margin: 1em 0 0 0;
+        background: none;
+        cursor: pointer;
+        transition: background ease-in 0.25s;
+    }
+        .product_inner button:before {
+            font-family: FontAwesome;
+            content: "";
+            color: #FFF;
+            position: absolute;
+            font-size: 1.5em;
+            margin: 0 -1.5em;
+        }
+    .product_overlay {
+        background: rgba(255, 255, 255, 0.9);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        transform: translateY(-500px);
+        opacity: 0;
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+<h1>History</h1>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    @*<dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TotalPrice)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ShipperId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ShipperId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CreatedAt)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UpdatedAt)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UpdatedAt)
+        </dd>
+    </dl>*@
+
+    <div class='product--green'>
+        <div class='product_inner'>
+            <img src='http://wellandgood.com/wp-content/uploads/2012/07/Nike-Free-30-Womens-Running-Shoe-511495_600_A.png' width='300'>
+            <p>Nike Air (Men)</p>
+            <p>Size 11</p>
+            <p>Price £299.99</p>
+            <button>Add to basket</button>
+        </div>
+        <div class='product_overlay'>
+            <h2>Added to basket</h2>
+            <i class='fa fa-check'></i>
+        </div>
+    </div>
+</div>
+<div>
+    @*<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |*@
+    <a asp-action="Index">Back to List</a>
+</div>

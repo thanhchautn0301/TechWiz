@@ -1,0 +1,74 @@
+﻿@model TechWizProject.Models.CartItem
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Images
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th>
+                Price
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.cartItems)
+        {
+            <form asp-action="edit" method="post">
+
+                <tr>
+                    <td>
+                        @item.Name
+                      
+                    </td>
+                    <td>
+                        <img src="~/images/@item.Images" alt="Food's image"   />
+                    </td>
+                    <td>
+                        @item.Description
+                       
+                    </td>
+                    <td>
+                        <input type="number" value="@item.Quantity" asp-for="Quantity" />
+
+                    </td>
+                    <td>
+                        @item.Price
+                    </td>
+                    <td>
+                        <input type="hidden" value="@item.UserId" asp-for="UserId" />
+                        <input type="hidden" value="@item.FoodId" asp-for="FoodId" />
+
+
+
+                        <input type="submit" value="Edit " />
+                        <a asp-action="Delete" asp-route-userid="@item.UserId" asp-route-foodid="@item.FoodId">Delete</a> |
+                    </td>
+                </tr>
+            </form>
+        }
+        <a asp-action="checkout" class="btn btn-success">CheckOut</a>
+
+    </tbody>
+</table>
+

@@ -1,0 +1,77 @@
+﻿@model IEnumerable<TechWizProject.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<p>
+    <a asp-action="Create">Create New</a>
+    <a asp-action="History">History</a>
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.UserId)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.ShipperId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.UpdatedAt)
+                </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.UserId)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.ShipperId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedAt)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.UpdatedAt)
+                    </td>*@
+                <td>
+                    @*<a asp-action="Accept" asp-route-id="@item.Id">Accept</a>*@
+
+                    <a asp-controller="ordertrackings" asp-action="accepted" asp-route-id="@item.Id">Accept</a>|
+                    <a asp-controller="orders" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Cancel" asp-route-id="@item.Id" onclick="return confirm('Are you sure?')">Cancel</a>
+
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

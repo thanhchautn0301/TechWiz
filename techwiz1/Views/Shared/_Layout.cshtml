@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <link href="~/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/styleUser.css" />
+    <title>FoodMATE</title>
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+        <nav id="sidebar-wrapper">
+            <div class="sidebar-logo">
+                <h3>Food<span>MATE</span></h3>
+            </div>
+            <ul class="sidebar-navigation">
+                <li class="header">Navigation</li>
+                <li>
+                    <a href="#"> <i class="fa fa-home text-white"></i> Homepage </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard
+                    </a>
+                </li>
+                <li class="header">Another Menu</li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-users" aria-hidden="true"></i> Friends
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-cog" aria-hidden="true"></i> Settings
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                        Information
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div id="page-content-wrapper">
+            <header class="navbar navbar-expand-lg navbar-light bg-light header-navigation">
+                <div>
+                    <button class="btn p-0 box-shadow" id="menu-toggle">
+                        <i class="fa fa-bars text-dark"></i>
+                    </button>
+                </div>
+                <div class="header-search">
+                    <input type="text" placeholder="Search food" />
+                    <button class="btn p-0 box-shadow">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+                <div class="user-action">
+                    <span><i class="fa fa-user"></i>&nbsp;</span>
+                    <a asp-controller="Home" asp-action="Login">Login</a> /
+                    <a href="signup.html">Register</a>
+                </div>
+            </header>
+
+            <div class="page-content-wrapper">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <script src="~/js/jquery-3.1.1.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.js"></script>
+    <script src="~/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="~/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script>
+        $("#menu-toggle").click(function (e) {
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+</body>
+</html>

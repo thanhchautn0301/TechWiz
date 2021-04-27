@@ -1,0 +1,11 @@
+﻿<ul class="list-group panel panel-default">
+    <li class="list-group-item panel-heading">Categories</li>
+    @foreach (var category in ViewBag.categories)
+    {
+        <li class="list-group-item panel-body"><a asp-controller="foods" asp-action="search" asp-route-keyword="@ViewBag.keyword" asp-route-categoryId="@category.Id" asp-route-restaurantId="@ViewBag.restaurantId" asp-route-page="1" >@category.Name</a></li>
+    }
+
+</ul>
+
+   
+

@@ -1,0 +1,154 @@
+﻿
+@{
+    ViewData["Title"] = "Filter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    int pageNumber = ViewBag.pageNumber;
+
+    int previousPage = int.Parse(ViewBag.currentPage) - 1;
+    if (previousPage == 0)
+    {
+        previousPage = 1;
+    }
+
+    int nextPage = int.Parse(ViewBag.currentPage) + 1;
+    if (nextPage > (ViewBag.pageNumber - 1))
+    {
+        nextPage = ViewBag.pageNumber;
+    }
+}
+
+<div id="heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="heading-content">
+                    <h2>Our Products</h2>
+                    <span>Home / <a href="about-us.html">Products</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div id="products-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="product-heading">
+                    <h2>Hungry ?</h2>
+                    <img src="~/images/under-heading.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="filters col-md-12 col-xs-12">
+                <ul id="filters" class="clearfix">
+                    <li><span class="filter" data-filter="all">All</span></li>
+                    <li><span class="filter" data-filter=".ginger">Ginger</span></li>
+                    <li><span class="filter" data-filter=".pizza">Pizza</span></li>
+                    <li><span class="filter" data-filter=".pasta">Pasta</span></li>
+                    <li><span class="filter" data-filter=".drink">Drink</span></li>
+                    <li><span class="filter" data-filter=".hamburger">Hamburger</span></li>
+                </ul>
+            </div>
+        </div>
+        <hr />
+        <div class="row" id="Container">
+
+            <div class="col-md-2 col-lg-2">
+                <categories></categories>
+                <restaurant></restaurant>
+            </div>
+
+            <div class="col-md-10 col-lg-10">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <button id="searchtest">Click ne</button>
+                        <div class="search-box">
+                            <form name="search_form" method="get" asp-controller="foods" asp-action="search">
+                                <input id="search" name="keyword" type="text" placeholder="Type anything..." value="@ViewBag.keyword" />
+                                @{
+                                    if (ViewBag.categoryId != null)
+                                    {
+                                        <input type="hidden" name="categoryId" value="@ViewBag.categoryId" />
+                                    }
+                                    else if (ViewBag.restaurantId != null)
+                                    {
+                                        <input type="hidden" name="restaurantId" value="@ViewBag.restaurantId" />
+                                    }
+                                }
+
+                                <input type="hidden" name="page" value="1" />
+
+                                <input type="submit" id="search-button" />
+                            </form>
+                        </div>
+                    </div>
+                </div> <!--End of search bar row-->
+                <div class="row">
+                    @foreach (var food in ViewBag.foods)
+                    {
+                        <div class="col-md-3 col-sm-6 mix portfolio-item">
+                            <div class="portfolio-wrapper">
+                                <div class="portfolio-thumb">
+                                    <img src="~/images/@food.Images" id="foodImage" alt="" />
+                                    <div class="hover">
+                                        <div class="hover-iner">
+                                            <a class="fancybox" href="~/images/@food.Images"><img src="~/images/open-icon.png" alt="" /></a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="label-text">
+                                    <h3><a href="single-post.html">@food.Name</a></h3>
+                                    <span class="text-category">$ @food.Price</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                    @{
+                        if (ViewBag.message != null)
+                        {
+
+                            <div class="col-md-6 col-sm-6 "><h3>@ViewBag.message</h3></div>
+                        }
+
+                    }
+                
+
+                    </div> <!--End of  content row-->
+                    <div class="row text-center">
+                        <div class="pagination">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <ul>
+
+                                        <li><a asp-controller="foods" asp-action="search" asp-route-keyword="@ViewBag.keyword" asp-route-categoryId="@ViewBag.categoryId" asp-route-restaurantId="@ViewBag.restaurantId" asp-route-page="@previousPage">Previous</a></li>
+
+                                        @for (int i = 1; i <= pageNumber; i++)
+                                        {
+                                            <li><a asp-controller="foods" asp-action="search" asp-route-keyword="@ViewBag.keyword" asp-route-categoryId="@ViewBag.categoryId" asp-route-restaurantId="@ViewBag.restaurantId" asp-route-page="@i">@i</a></li>
+                                        }
+
+
+                                        <li><a asp-controller="foods" asp-action="search" asp-route-keyword="@ViewBag.keyword" asp-route-categoryId="@ViewBag.categoryId" asp-route-restaurantId="@ViewBag.restaurantId" asp-route-page="@nextPage">Next</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!--End of  pagination row-->
+                </div>
+
+
+        </div>
+
+    </div>
+
+</div>

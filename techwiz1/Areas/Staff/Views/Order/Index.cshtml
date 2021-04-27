@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container" style="margin-top:250px">
+    <div class="row" style="margin-bottom:25px">
+        <div class="col-md-4">
+            <div class="search-box">
+                <form name="search_form" method="get" asp-area="staff" asp-controller="order" asp-action="search">
+                    <input id="search" name="orderId" placeholder="Type anything..." />
+                    <input type="submit" id="search-button" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+
+                        <th scope="col" style="color:orange; background-color:black">Order Id</th>
+                        <th scope="col" style="color: orange; background-color: black">Total Price</th>
+                        <th scope="col" style="color: orange; background-color: black">Created Day</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in ViewBag.orders)
+                    {
+                        <tr>
+                            <th scope="row">@order.Id</th>
+                            <td>@order.TotalPrice</td>
+                            <td>@order.CreatedAt</td>
+                            <td></td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
